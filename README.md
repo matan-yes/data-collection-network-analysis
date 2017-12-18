@@ -58,13 +58,15 @@ calc.betweenness
 max.betweenness <- as.numeric(which(max(calc.betweenness) == calc.betweenness))
 calc.betweenness[max.betweenness]
 ```
-   sloan 
-115.3667
+##   sloan 
+## 115.3667
+
 #1 a.ii Calculate Closeness
 ```{r}
 calc.closeness = closeness(g)
 calc.closeness
 ```
+
      addison        adele       altman      arizona        avery       bailey          ben        chief        colin        denny        derek   ellis grey         finn 
  0.003174603  0.001144165  0.003039514  0.002985075  0.002915452  0.001075269  0.001074114  0.001148106  0.002597403  0.002881844  0.003039514  0.001149425  0.002816901 
         grey         hank        izzie        karev       kepner         lexi mrs. seabury        nancy       olivia     o'malley         owen      preston        sloan 
@@ -76,8 +78,8 @@ calc.closeness
 max.closeness <- as.numeric(which(max(calc.closeness) == calc.closeness))
 calc.closeness[max.closeness]
 ```
-     torres 
-0.003194888 
+##     torres 
+## 0.003194888 
 #1 a.iii Calculate Eigenvector
 ```{r}
 calc.eigenvector = eigen_centrality(g)
@@ -160,8 +162,8 @@ $options$numreo
 max.eigenvector <- as.numeric(which(max(calc.eigenvector$vector) == calc.eigenvector$vector))
 calc.eigenvector$vector[max.eigenvector]
 ```
-karev 
-    1 
+## karev 
+##    1 
 #1.b  Algorithms
 ##1.b.i
 ##First algorithm: The Grivan Newman alg
