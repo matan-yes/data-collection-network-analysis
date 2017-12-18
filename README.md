@@ -108,16 +108,22 @@ calc.eigenvector$vector[max.eigenvector]
 alg.gri.new <- edge.betweenness.community(g)
 plot(g, vertex.size=10, vertex.color=membership(alg.gri.new), asp=FALSE)
 ```
+![str result Image](https://github.com/matan-yes/ex3/blob/master/images/2-graph.JPG)
 ### There is seven different kinds of colors in the graph each one is a community. Five connected groups and two single groups
 ## Lets take a look over the community sizes
 ##1.b.ii
 ```{r}
 sizes(alg.gri.new)
 ```
+Community sizes
+1 2 3 4 5 6 7 
+8 5 5 4 3 3 4 
+
 ##1.b.iii - The modularity value
 ```{r}
 modularity(alg.gri.new)
 ```
+[1] 0.5774221
 
 ##1.b.i
 ##First algorithm: The Walktrap alg
@@ -126,13 +132,19 @@ modularity(alg.gri.new)
 alg.walktrap <- walktrap.community(g)
 plot(g, vertex.size=10, vertex.color=membership(alg.walktrap), asp=FALSE)
 ```
+![str result Image](https://github.com/matan-yes/ex3/blob/master/images/3-graph.JPG)
+
 ### There is seven different kinds of colors in the graph each one is a community. Four connected groups, one with double groups and one single group
 ## Lets take a look over the community sizes
 ##1.b.ii
 ```{r}
 sizes(alg.walktrap)
 ```
+ Community sizes
+ 1  2  3  4  5  6  7 
+ 5 13  3  3  2  3  3 
 ##1.b.iii - The modularity value
 ```{r}
 modularity(alg.walktrap)
 ```
+[1] 0.5147059
