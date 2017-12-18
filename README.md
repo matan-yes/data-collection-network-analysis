@@ -58,8 +58,8 @@ calc.betweenness
 max.betweenness <- as.numeric(which(max(calc.betweenness) == calc.betweenness))
 calc.betweenness[max.betweenness]
 ```
-##   sloan 
-## 115.3667
+  ##   sloan 
+  ## 115.3667
 
 #1 a.ii Calculate Closeness
 ```{r}
