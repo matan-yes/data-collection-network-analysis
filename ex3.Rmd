@@ -1,6 +1,6 @@
 ---
 title: "EX3"
-author: "Matan"
+author: "Matan Yeshurun , Alon Galperin"
 date: "December 15, 2017"
 output: html_document
 ---
