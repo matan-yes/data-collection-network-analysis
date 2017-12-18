@@ -58,8 +58,8 @@ calc.betweenness
 max.betweenness <- as.numeric(which(max(calc.betweenness) == calc.betweenness))
 calc.betweenness[max.betweenness]
 ```
-  ##   sloan 
-  ## 115.3667
+    ##    sloan 
+    ## 115.3667
 
 #1 a.ii Calculate Closeness
 ```{r}
@@ -78,92 +78,27 @@ calc.closeness
 max.closeness <- as.numeric(which(max(calc.closeness) == calc.closeness))
 calc.closeness[max.closeness]
 ```
-##     torres 
-## 0.003194888 
+    ##      torres 
+    ## 0.003194888
 #1 a.iii Calculate Eigenvector
 ```{r}
 calc.eigenvector = eigen_centrality(g)
 calc.eigenvector
 ```
-$vector
      addison        adele       altman      arizona        avery       bailey          ben        chief        colin        denny        derek   ellis grey         finn 
 5.537364e-01 1.980913e-17 2.077024e-01 2.101205e-01 1.538358e-01 0.000000e+00 1.267322e-17 4.029890e-18 7.009961e-03 1.654896e-01 2.500302e-01 0.000000e+00 8.795329e-02 
         grey         hank        izzie        karev       kepner         lexi mrs. seabury        nancy       olivia     o'malley         owen      preston        sloan 
 3.004927e-01 1.654896e-01 5.653959e-01 1.000000e+00 2.926969e-01 5.255806e-01 2.926969e-01 1.878564e-01 4.685192e-01 6.006975e-01 6.780381e-02 7.009961e-03 6.418121e-01 
        steve   susan grey  thatch grey       torres       tucker         yang 
 8.795329e-02 2.781837e-17 3.039265e-18 7.178773e-01 0.000000e+00 2.394956e-02 
-
-$value
-[1] 3.416503
-
-$options
-$options$bmat
-[1] "I"
-
-$options$n
-[1] 32
-
-$options$which
-[1] "LA"
-
-$options$nev
-[1] 1
-
-$options$tol
-[1] 0
-
-$options$ncv
-[1] 0
-
-$options$ldv
-[1] 0
-
-$options$ishift
-[1] 1
-
-$options$maxiter
-[1] 1000
-
-$options$nb
-[1] 1
-
-$options$mode
-[1] 1
-
-$options$start
-[1] 1
-
-$options$sigma
-[1] 0
-
-$options$sigmai
-[1] 0
-
-$options$info
-[1] 0
-
-$options$iter
-[1] 3
-
-$options$nconv
-[1] 1
-
-$options$numop
-[1] 32
-
-$options$numopb
-[1] 0
-
-$options$numreo
-[1] 21
 ##Plot the maximal Eigenvector
 ```{r}
 
 max.eigenvector <- as.numeric(which(max(calc.eigenvector$vector) == calc.eigenvector$vector))
 calc.eigenvector$vector[max.eigenvector]
 ```
-## karev 
-##    1 
+    ## karev 
+    ##     1
 #1.b  Algorithms
 ##1.b.i
 ##First algorithm: The Grivan Newman alg
