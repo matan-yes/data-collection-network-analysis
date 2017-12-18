@@ -41,6 +41,7 @@ g <- graph.data.frame(ga.data, vertices=ga.vrtx, directed=FALSE)
 ```{r}
 plot(g)
 ```
+![str result Image](https://github.com/matan-yes/ex3/blob/master/images/1-graph.JPG)
 #1 a.i Calculate Betweenness
 ```{r}
 calc.betweenness = betweenness(g)
