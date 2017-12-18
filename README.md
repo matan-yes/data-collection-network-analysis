@@ -67,12 +67,12 @@ calc.closeness = closeness(g)
 calc.closeness
 ```
 
-     addison        adele       altman      arizona        avery       bailey          ben        chief        colin        denny        derek   ellis grey         finn 
- 0.003174603  0.001144165  0.003039514  0.002985075  0.002915452  0.001075269  0.001074114  0.001148106  0.002597403  0.002881844  0.003039514  0.001149425  0.002816901 
-        grey         hank        izzie        karev       kepner         lexi mrs. seabury        nancy       olivia     o'malley         owen      preston        sloan 
- 0.003003003  0.002881844  0.003076923  0.003174603  0.002967359  0.003115265  0.002967359  0.002967359  0.003039514  0.003134796  0.002898551  0.002597403  0.003174603 
-       steve   susan grey  thatch grey       torres       tucker         yang 
- 0.002816901  0.001144165  0.001148106  0.003194888  0.001074114  0.002754821 
+   ##     addison        adele       altman      arizona        avery       bailey          ben        chief        colin        denny        derek   ellis grey         finn 
+   ## 0.003174603  0.001144165  0.003039514  0.002985075  0.002915452  0.001075269  0.001074114  0.001148106  0.002597403  0.002881844  0.003039514  0.001149425  0.002816901 
+   ##     grey         hank        izzie        karev       kepner         lexi mrs. seabury        nancy       olivia     o'malley         owen      preston        sloan 
+   ## 0.003003003  0.002881844  0.003076923  0.003174603  0.002967359  0.003115265  0.002967359  0.002967359  0.003039514  0.003134796  0.002898551  0.002597403  0.003174603 
+   ##    steve   susan grey  thatch grey       torres       tucker         yang 
+   ## 0.002816901  0.001144165  0.001148106  0.003194888  0.001074114  0.002754821 
 ##Plot the maximal Closeness
 ```{r}
 max.closeness <- as.numeric(which(max(calc.closeness) == calc.closeness))
