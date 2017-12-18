@@ -115,9 +115,10 @@ plot(g, vertex.size=10, vertex.color=membership(alg.gri.new), asp=FALSE)
 ```{r}
 sizes(alg.gri.new)
 ```
-Community sizes
-1 2 3 4 5 6 7 
-8 5 5 4 3 3 4 
+
+   ##Community sizes
+   ##1 2 3 4 5 6 7 
+   ##8 5 5 4 3 3 4 
 
 ##1.b.iii - The modularity value
 ```{r}
@@ -140,9 +141,9 @@ plot(g, vertex.size=10, vertex.color=membership(alg.walktrap), asp=FALSE)
 ```{r}
 sizes(alg.walktrap)
 ```
- Community sizes
- 1  2  3  4  5  6  7 
- 5 13  3  3  2  3  3 
+  ##Community sizes
+  ##1  2  3  4  5  6  7 
+  ##5 13  3  3  2  3  3 
 ##1.b.iii - The modularity value
 ```{r}
 modularity(alg.walktrap)
