@@ -85,12 +85,13 @@ calc.closeness[max.closeness]
 calc.eigenvector = eigen_centrality(g)
 calc.eigenvector
 ```
-     addison        adele       altman      arizona        avery       bailey          ben        chief        colin        denny        derek   ellis grey         finn 
-5.537364e-01 1.980913e-17 2.077024e-01 2.101205e-01 1.538358e-01 0.000000e+00 1.267322e-17 4.029890e-18 7.009961e-03 1.654896e-01 2.500302e-01 0.000000e+00 8.795329e-02 
-        grey         hank        izzie        karev       kepner         lexi mrs. seabury        nancy       olivia     o'malley         owen      preston        sloan 
-3.004927e-01 1.654896e-01 5.653959e-01 1.000000e+00 2.926969e-01 5.255806e-01 2.926969e-01 1.878564e-01 4.685192e-01 6.006975e-01 6.780381e-02 7.009961e-03 6.418121e-01 
-       steve   susan grey  thatch grey       torres       tucker         yang 
-8.795329e-02 2.781837e-17 3.039265e-18 7.178773e-01 0.000000e+00 2.394956e-02 
+    ## addison        adele       altman      arizona        avery       bailey          ben        chief        colin        denny        derek   ellis grey         finn 
+    ## 5.537364e-01 1.980913e-17 2.077024e-01 2.101205e-01 1.538358e-01 0.000000e+00 1.267322e-17 4.029890e-18 7.009961e-03 1.654896e-01 2.500302e-01 0.000000e+00 8.795329e-02 
+    ##  grey         hank        izzie        karev       kepner         lexi mrs. seabury        nancy       olivia     o'malley         owen      preston        sloan 
+    ## 3.004927e-01 1.654896e-01 5.653959e-01 1.000000e+00 2.926969e-01 5.255806e-01 2.926969e-01 1.878564e-01 4.685192e-01 6.006975e-01 6.780381e-02 7.009961e-03 6.418121e-01 
+    ##   steve   susan grey  thatch grey       torres       tucker         yang 
+    ## 8.795329e-02 2.781837e-17 3.039265e-18 7.178773e-01 0.000000e+00 2.394956e-02 
+    
 ##Plot the maximal Eigenvector
 ```{r}
 
