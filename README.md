@@ -47,13 +47,12 @@ plot(g)
 calc.betweenness = betweenness(g)
 calc.betweenness
 ```
-
-  ##     addison        adele       altman      arizona        avery       bailey          ben        chief        colin        denny        derek   ellis grey         finn 
-  ##  44.08333      0.00000     76.00000      0.00000      0.00000      1.00000      0.00000      3.00000      0.00000      0.00000     17.95000      4.00000      0.00000 
-  ##      grey         hank        izzie        karev       kepner         lexi mrs. seabury        nancy       olivia     o'malley         owen      preston        sloan 
-  ##  46.86667      0.00000     47.95000     95.26667      0.00000     36.00000      0.00000      0.00000      4.95000     54.41667     60.00000      0.00000    115.36667 
-  ##     steve   susan grey  thatch grey       torres       tucker         yang 
-  ##   0.00000      0.00000      3.00000     67.15000      0.00000     43.00000 
+     addison        adele       altman      arizona        avery       bailey          ben        chief        colin        denny        derek   ellis grey         finn 
+    44.08333      0.00000     76.00000      0.00000      0.00000      1.00000      0.00000      3.00000      0.00000      0.00000     17.95000      4.00000      0.00000 
+        grey         hank        izzie        karev       kepner         lexi mrs. seabury        nancy       olivia     o'malley         owen      preston        sloan 
+    46.86667      0.00000     47.95000     95.26667      0.00000     36.00000      0.00000      0.00000      4.95000     54.41667     60.00000      0.00000    115.36667 
+       steve   susan grey  thatch grey       torres       tucker         yang 
+     0.00000      0.00000      3.00000     67.15000      0.00000     43.00000 
 ##Plot the maximal betweeness
 ```{r}
 max.betweenness <- as.numeric(which(max(calc.betweenness) == calc.betweenness))
