@@ -48,20 +48,12 @@ calc.betweenness = betweenness(g)
 calc.betweenness
 ```
 
-    ##         lexi         owen        sloan       torres        derek 
-    ##     36.00000     60.00000    115.36667     67.15000     17.95000 
-    ##        karev     o'malley         yang         grey        chief 
-    ##     95.26667     54.41667     43.00000     46.86667      3.00000 
-    ##   ellis grey   susan grey       bailey        izzie       altman 
-    ##      4.00000      0.00000      1.00000     47.95000     76.00000 
-    ##      arizona        colin      preston       kepner      addison 
-    ##      0.00000      0.00000      0.00000      0.00000     44.08333 
-    ##        nancy       olivia mrs. seabury        adele  thatch grey 
-    ##      0.00000      4.95000      0.00000      0.00000      3.00000 
-    ##       tucker         hank        denny         finn        steve 
-    ##      0.00000      0.00000      0.00000      0.00000      0.00000 
-    ##          ben        avery 
-    ##      0.00000      0.00000
+  ##     addison        adele       altman      arizona        avery       bailey          ben        chief        colin        denny        derek   ellis grey         finn 
+  ##  44.08333      0.00000     76.00000      0.00000      0.00000      1.00000      0.00000      3.00000      0.00000      0.00000     17.95000      4.00000      0.00000 
+  ##      grey         hank        izzie        karev       kepner         lexi mrs. seabury        nancy       olivia     o'malley         owen      preston        sloan 
+  ##  46.86667      0.00000     47.95000     95.26667      0.00000     36.00000      0.00000      0.00000      4.95000     54.41667     60.00000      0.00000    115.36667 
+  ##     steve   susan grey  thatch grey       torres       tucker         yang 
+  ##   0.00000      0.00000      3.00000     67.15000      0.00000     43.00000 
 ##Plot the maximal betweeness
 ```{r}
 max.betweenness <- as.numeric(which(max(calc.betweenness) == calc.betweenness))
