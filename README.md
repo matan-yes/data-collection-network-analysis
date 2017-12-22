@@ -354,3 +354,30 @@ plot(q2.graph, vertex.size=10, vertex.color=membership(q2.gn), asp=FALSE)
 ```
 ![str result Image](https://github.com/matan-yes/ex3/blob/master/images/5-graph.JPG)
 
+Check the size of the community and number of members:
+first row is the number of the community, second row is the number of members in the community  
+```{r}
+sizes(q2.gn)
+```
+    Community sizes
+     1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19  
+     2 26 35 16 19 24  5  4 20  1  1  1  8  4  4  2  1  6  4
+     
+According to Girvan-Newman algorithm, there are 19 communities, the larger has 26 vertexes.
+
+modularity value (returns max value):
+
+```{r}
+modularity(q2.gn)
+```
+
+    [1] 0.576375
+    
+### Second algorithm - Walktrap:
+
+```{r}
+q2.walktrap <- walktrap.community(q2.graph)
+plot(q2.graph, vertex.size=10, vertex.color=membership(q2.walktrap), asp=FALSE)
+```
+![str result Image](https://github.com/matan-yes/ex3/blob/master/images/6-graph.JPG)
+
