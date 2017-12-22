@@ -339,14 +339,14 @@ The word "tasty"" is the word with the maximal Betweenness and closeness.
 The word "now"" is the word with the maximal Eigenvector.
 
 ### community detection:  
-With the shape of circle it will be more difficlt to see the diffrent communities.  
+With the shape of circle it will be difficult to see the diffrent communities.  
 We will change the shape to fruchterman.reingold
 
 ```{r}
 q2.graph$layout <-layout.fruchterman.reingold(q2.graph)
 ```
 
-###First algorithm - Girvan-Newman:
+### First algorithm - Girvan-Newman:
 
 ```{r}
 q2.gn <-  edge.betweenness.community(q2.graph)
