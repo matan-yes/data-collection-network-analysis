@@ -310,3 +310,15 @@ calc.betweenness[max.betweenness]
 ```
        tasty
     3742.635
+
+
+**closeness**
+
+```{r}
+q2.closeness = closeness(q2.graph)
+q2.max_closeness <- as.numeric(which(max(q2.closeness) == q2.closeness))
+q2.closeness[q2.max_closeness]
+```
+
+           tasty
+    0.0003752345
