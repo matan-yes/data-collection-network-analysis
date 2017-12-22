@@ -297,3 +297,16 @@ V(q2.graph)$label.cex<-  2.2 * V(q2.graph)$size / max(V(q2.graph)$size) + .2
 plot(q2.graph, margin = -0.2)
 ```
 ![str result Image](https://github.com/matan-yes/ex3/blob/master/images/4-graph.JPG)
+We tried some types of graphs and decided that the circle is the most readable.
+
+### d. For Question 1
+#### Calculate Concentration
+**Betweenness**
+
+```{r}
+calc.betweenness = betweenness(q2.graph)
+max.betweenness <- as.numeric(which(max(calc.betweenness) == calc.betweenness))
+calc.betweenness[max.betweenness]
+```
+       tasty
+    3742.635
