@@ -363,7 +363,7 @@ sizes(q2.gn)
      1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19  
      2 26 35 16 19 24  5  4 20  1  1  1  8  4  4  2  1  6  4
      
-According to Girvan-Newman algorithm, there are 19 communities, the larger has 26 vertexes.
+According to Girvan-Newman algorithm, there are 19 communities, the largest has 26 vertexes.
 
 modularity value (returns max value):
 
@@ -389,7 +389,7 @@ sizes(q2.walktrap)
     Community sizes
      1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
      18 41  8 14 16 33 12  6  4 18  4  2  2  4  1
-According to Walktrap algorithm, there are 15 communities, the larger has 41 vertexes.
+According to Walktrap algorithm, there are 15 communities, the largest has 41 vertexes.
 
 modularity value (returns max value):
 ```{r}
