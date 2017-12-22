@@ -123,7 +123,7 @@ sizes(alg.gri.new)
 ```{r}
 modularity(alg.gri.new)
 ```
-[1] 0.5774221
+    [1] 0.5774221
 
 ## Second algorithm: The Walktrap Algorithms
 ### 1) b.i Print the network up to the color code that match the communities
@@ -149,3 +149,96 @@ sizes(alg.walktrap)
 modularity(alg.walktrap)
 ```
 [1] 0.5147059
+
+
+# Question 2 Use API to Fetch Data and Network Analysis
+
+## a. Data Collection
+In this question we will fectch data from Facebook.
+We will use the package RFacebook.  
+We used the following tutorial to learn how to create the authentication: 
+[Analyzing-Facebook-with-R](http://thinktostart.com/analyzing-facebook-with-r/)
+
+**The steps of the process are:**  
+1. We will create Facebook Developer account.  
+2. In R we will download and require all the needed packages.  
+3. Create auth file (following the tutorial mentioned above).  
+4. We will fetch posts from Tasty facebook page  
+5. clean the posts tests  
+6. Build a corpus and Term Document Matrix
+
+The data we collect is posts from Tasty Facebook page  
+[Tasty Faceboook page](https://www.facebook.com/buzzfeedtasty/?fref=ts)  
+We will fetch 25 posts, without comments. It would be nice if we can discover what are the main ingredients in thier recipe.
+
+#### Let's start:  
+Import RFacebook  
+
+Quotation from RFacebook github:  
+This package provides a series of functions that allow R users to access Facebook's API to get information about public pages, groups, and posts, as well as some of the authenticated user's private data.
+
+
+```{r}
+require (Rfacebook)
+```
+
+Load the auth file with the Facebook authentication details
+
+```{r}
+load("fb_oauth")
+```
+
+Fetch 25 posts from the page Tasty.
+We wont fetch comments of the posts, only the content of the posts.
+
+```{r}
+post_amount = 25
+subject = "buzzfeedtasty"
+q2.fb_page <- getPage(page = subject, token=fb_oauth, n = post_amount)
+```
+
+### Data Cleaning
+
+function for cleaning the data, the stages of cleaning are:  
+1. Convert text to UTF-8  
+2. Change characters to lowercase  
+3. Remove URLS  
+4. Delete all chars that are not english letter or numbers  
+5. Fix spacing  
+
+```{r}
+# helper function for removing urls from posts content
+removeURL <- function(x) gsub("http[^[:space:]]*", "", x)
+
+Clean_String <- function(string){
+    # convert to UTF-8
+    processed_text <- iconv(string, "", "UTF-8")
+    # Lowercase
+    processed_text <- tolower(processed_text)
+    # remove urls
+    processed_text <- removeURL(processed_text)
+    #' Remove everything that is not a number or letter
+    processed_text <- stringr::str_replace_all(processed_text,"[^a-zA-Z'0-9\\s]", "")
+    # Shrink down to just one white space
+    processed_text <- stringr::str_replace_all(processed_text,"[\\s]+", " ")
+    # Get rid of trailing "" if necessary
+    indexes <- which(processed_text == "")
+    if(length(indexes) > 0){
+      processed_text <- processed_text[-indexes]
+    }
+    return(processed_text)
+}
+
+clean_posts <- lapply(X=q2.fb_page$message,FUN=Clean_String)
+```
+
+Print the first 3 posts to see how the text looks after cleaning
+```{r}
+head(clean_posts, n = 3)
+```
+
+    [[1]] "gettin' hygge with it"
+
+    [[2]] "from basic kitchen essentials to cutting edge devices these tools will help you become a culinary master in the new year"
+
+    [[3]] "still shopping you can still get our tasty latest greatest cookbook by christmas order here "
