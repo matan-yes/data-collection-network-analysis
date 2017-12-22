@@ -1,11 +1,12 @@
 # ex3
 ---
 title: "EX3"
-author: "Matan"
+author: "Matan Yeshurun and Alon Galperin"
 date: "December 15, 2017"
 output: html_document
 ---
 
+# Assignment 3 - Data Collection & Network Analysis
 
 Setting a working directory:
 
@@ -15,34 +16,31 @@ setwd(folder)
 
 #Or for all chuncks in this Rmarkdown:
 knitr::opts_knit$set(root.dir = folder )
-
-
 ```
+# Question 1 Grey's Anatomy Network of Romance
 
-```{r}
-getwd()
-```
+Import IGraph Library
 ```{r}
 library(igraph)
 ```
 
-
-
-# Grey's Anatomy Network of Romance
 ## Read the data- nodes and edges into dataframe
-## set graph
 ```{r}
 ga.data <- read.csv('ga_edgelist.csv', header=TRUE, stringsAsFactors=FALSE)
 ga.vrtx <- read.csv('ga_actors.csv', header=TRUE, stringsAsFactors=FALSE)
-g <- graph.data.frame(ga.data, vertices=ga.vrtx, directed=FALSE)
-
 ```
-##plot graph
+
+### Set graph
+```{r}
+g <- graph.data.frame(ga.data, vertices=ga.vrtx, directed=FALSE)
+```
+### plot graph
 ```{r}
 plot(g)
 ```
 ![str result Image](https://github.com/matan-yes/ex3/blob/master/images/1-graph.JPG)
-#1 a.i Calculate Betweenness
+
+## 1) a.i Calculate Betweenness
 ```{r}
 calc.betweenness = betweenness(g)
 calc.betweenness
@@ -53,7 +51,8 @@ calc.betweenness
     46.86667      0.00000     47.95000     95.26667      0.00000     36.00000      0.00000      0.00000      4.95000     54.41667     60.00000      0.00000    115.36667 
        steve   susan grey  thatch grey       torres       tucker         yang 
      0.00000      0.00000      3.00000     67.15000      0.00000     43.00000 
-##Plot the maximal betweeness
+     
+### Calculate the maximal betweeness
 ```{r}
 max.betweenness <- as.numeric(which(max(calc.betweenness) == calc.betweenness))
 calc.betweenness[max.betweenness]
@@ -61,7 +60,7 @@ calc.betweenness[max.betweenness]
     ##    sloan 
     ## 115.3667
 
-#1 a.ii Calculate Closeness
+## 1) a.ii Calculate Closeness
 ```{r}
 calc.closeness = closeness(g)
 calc.closeness
@@ -73,14 +72,14 @@ calc.closeness
     0.003003003  0.002881844  0.003076923  0.003174603  0.002967359  0.003115265  0.002967359  0.002967359  0.003039514  0.003134796  0.002898551  0.002597403  0.003174603 
        steve   susan grey  thatch grey       torres       tucker         yang 
     0.002816901  0.001144165  0.001148106  0.003194888  0.001074114  0.002754821 
-##Plot the maximal Closeness
+### Calculate the maximal Closeness
 ```{r}
 max.closeness <- as.numeric(which(max(calc.closeness) == calc.closeness))
 calc.closeness[max.closeness]
 ```
     ##      torres 
     ## 0.003194888
-#1 a.iii Calculate Eigenvector
+## 1) a.iii Calculate Eigenvector
 ```{r}
 calc.eigenvector = eigen_centrality(g)
 calc.eigenvector
@@ -92,26 +91,27 @@ calc.eigenvector
     ##   steve   susan grey  thatch grey       torres       tucker         yang 
     ## 8.795329e-02 2.781837e-17 3.039265e-18 7.178773e-01 0.000000e+00 2.394956e-02 
     
-##Plot the maximal Eigenvector
+### Calculate the maximal Eigenvector
 ```{r}
-
 max.eigenvector <- as.numeric(which(max(calc.eigenvector$vector) == calc.eigenvector$vector))
 calc.eigenvector$vector[max.eigenvector]
 ```
     ## karev 
     ##     1
-#1.b  Algorithms
-##1.b.i
-##First algorithm: The Grivan Newman alg
-###Print the network up to the color code that match the communities
+    
+## 1.b  Algorithms
+## 1) b.i
+## First algorithm: The Grivan Newman Algorithm
+### Print the network up to the color code that match the communities
 ```{r}
 alg.gri.new <- edge.betweenness.community(g)
 plot(g, vertex.size=10, vertex.color=membership(alg.gri.new), asp=FALSE)
 ```
 ![str result Image](https://github.com/matan-yes/ex3/blob/master/images/2-graph.JPG)
 ### There is seven different kinds of colors in the graph each one is a community. Five connected groups and two single groups
-## Lets take a look over the community sizes
-##1.b.ii
+
+### Lets take a look over the community sizes
+### 1.b.ii
 ```{r}
 sizes(alg.gri.new)
 ```
@@ -120,15 +120,15 @@ sizes(alg.gri.new)
     ## 1 2 3 4 5 6 7 
     ## 8 5 5 4 3 3 4 
 
-##1.b.iii - The modularity value
+### 1.b.iii - The modularity value
 ```{r}
 modularity(alg.gri.new)
 ```
 [1] 0.5774221
 
-##1.b.i
-##First algorithm: The Walktrap alg
-###Print the network up to the color code that match the communities
+## 1.b.i
+## Second algorithm: The Walktrap Algorithms
+### Print the network up to the color code that match the communities
 ```{r}
 alg.walktrap <- walktrap.community(g)
 plot(g, vertex.size=10, vertex.color=membership(alg.walktrap), asp=FALSE)
@@ -137,7 +137,7 @@ plot(g, vertex.size=10, vertex.color=membership(alg.walktrap), asp=FALSE)
 
 ### There is seven different kinds of colors in the graph each one is a community. Four connected groups, one with double groups and one single group
 ## Lets take a look over the community sizes
-##1.b.ii
+## 1.b.ii
 ```{r}
 sizes(alg.walktrap)
 ```
@@ -146,7 +146,7 @@ sizes(alg.walktrap)
     ##  1  2  3  4  5  6  7 
     ##  5 13  3  3  2  3  3
     
-##1.b.iii - The modularity value
+## 1.b.iii - The modularity value
 ```{r}
 modularity(alg.walktrap)
 ```
