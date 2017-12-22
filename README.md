@@ -299,7 +299,7 @@ plot(q2.graph, margin = -0.2)
 ![str result Image](https://github.com/matan-yes/ex3/blob/master/images/4-graph.JPG)
 We tried some types of graphs and decided that the circle is the most readable.
 
-### d. For Question 1
+### d. From Question 1
 #### Calculate Concentration
 **Betweenness**
 
@@ -322,3 +322,35 @@ q2.closeness[q2.max_closeness]
 
            tasty
     0.0003752345
+
+
+**Eigenvector**
+
+```{r}
+q2.eigenvector = eigen_centrality(q2.graph)
+q2.max_eigenvector <- as.numeric(which(max(q2.eigenvector$vector) == q2.eigenvector$vector))
+q2.eigenvector$vector[q2.max_eigenvector]
+```
+
+    now
+      1
+**conclusion**
+The word "tasty"" is the word with the maximal Betweenness and closeness.  
+The word "now"" is the word with the maximal Eigenvector.
+
+### community detection:  
+With the shape of circle it will be more difficlt to see the diffrent communities.  
+We will change the shape to fruchterman.reingold
+
+```{r}
+q2.graph$layout <-layout.fruchterman.reingold(q2.graph)
+```
+
+###First algorithm - Girvan-Newman:
+
+```{r}
+q2.gn <-  edge.betweenness.community(q2.graph)
+plot(q2.graph, vertex.size=10, vertex.color=membership(q2.gn), asp=FALSE)
+```
+![str result Image](https://github.com/matan-yes/ex3/blob/master/images/5-graph.JPG)
+
