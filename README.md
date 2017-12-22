@@ -381,3 +381,18 @@ plot(q2.graph, vertex.size=10, vertex.color=membership(q2.walktrap), asp=FALSE)
 ```
 ![str result Image](https://github.com/matan-yes/ex3/blob/master/images/6-graph.JPG)
 
+Check the size of the community and number of members:
+```{r}
+sizes(q2.walktrap)
+```
+
+    Community sizes
+     1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
+     18 41  8 14 16 33 12  6  4 18  4  2  2  4  1
+According to Walktrap algorithm, there are 15 communities, the larger has 41 vertexes.
+
+modularity value (returns max value):
+```{r}
+modularity(q2.walktrap)
+```
+    [1] 0.6615078
