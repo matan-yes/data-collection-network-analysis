@@ -263,13 +263,37 @@ q2.td_matrix <- as.matrix(q2.td_matrix)
 head(q2.td_matrix)
 ```
 
-              Docs
-    Terms      1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
-      gettin   1 0 0 0 0 0 0 0 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
-      hygge    1 0 0 0 0 0 0 0 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
-      basic    0 1 0 0 0 0 0 0 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
-      become   0 1 0 0 0 0 0 0 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
-      culinary 0 1 0 0 0 0 0 0 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
-      cutting  0 1 0 0 0 0 0 0 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
-
 ![str result Image](https://github.com/matan-yes/ex3/blob/master/images/terms_table.PNG)
+
+This table will represent our adjacency table of the graph.  
+
+### b. Graph Definition  
+__The graph will show connection between words:__  
+ Vertex = term from the post corpus  
+ Edge  = represents co-occurence of the terms connected to it in the same post  
+ Direction = the graph will be undirected  
+
+### c. Create the Graph:
+```{r}
+q2.graph <- graph.incidence(q2.td_matrix)
+q2.project_bi_graph <- bipartite.projection(q2.graph)
+q2.graph <- q2.project_bi_graph$proj1
+q2.graph <- simplify(q2.graph)
+summary(q2.graph)
+```
+    IGRAPH 1e9aff4 UNW- 183 1565 -- 
+    + attr: name (v/c), weight (e/n)
+    
+**Discover Graph dimensions:**  
+We have a 183 vertices and 1565 edges.  
+We can see from "UNW"" that the graph is undirected (as we expected).
+
+### Draw Graph
+```{r}
+q2.graph$layout <- layout.circle(q2.graph)
+V(q2.graph)$label <- V(q2.graph)$name
+V(q2.graph)$size = degree(q2.graph)
+V(q2.graph)$label.cex<-  2.2 * V(q2.graph)$size / max(V(q2.graph)$size) + .2
+plot(q2.graph, margin = -0.2)
+```
+![str result Image](https://github.com/matan-yes/ex3/blob/master/images/4-graph.JPG)
