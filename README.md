@@ -242,3 +242,37 @@ head(clean_posts, n = 3)
     [[2]] "from basic kitchen essentials to cutting edge devices these tools will help you become a culinary master in the new year"
 
     [[3]] "still shopping you can still get our tasty latest greatest cookbook by christmas order here "
+
+### Create corpus
+
+```{r}
+library(tm)
+
+q2.corpus <- Corpus(VectorSource(clean_posts))
+q2.corpus <- tm_map(q2.corpus, removeWords, stopwords("english"))
+
+```
+
+### Create Term Document Matrix
+The term-document matrix will contain a binary weight, meaning '1' if term a is in document 1 or '0' otherwise.
+We use tm package, tm is a Text Mining package
+
+```{r}
+q2.td_matrix <- TermDocumentMatrix(q2.corpus, control = list(weighting=weightBin))
+q2.td_matrix <- as.matrix(q2.td_matrix)
+head(q2.td_matrix)
+```
+
+             Docs
+    Terms      1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25  
+      gettin   1 0 0 0 0 0 0 0 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+ 
+     hygge    1 0 0 0 0 0 0 0 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+ 
+     basic    0 1 0 0 0 0 0 0 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+  
+    become   0 1 0 0 0 0 0 0 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+  
+    culinary 0 1 0 0 0 0 0 0 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+  
+    cutting  0 1 0 0 0 0 0 0 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
