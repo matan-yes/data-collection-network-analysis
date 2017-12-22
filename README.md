@@ -107,7 +107,7 @@ alg.gri.new <- edge.betweenness.community(g)
 plot(g, vertex.size=10, vertex.color=membership(alg.gri.new), asp=FALSE)
 ```
 ![str result Image](https://github.com/matan-yes/ex3/blob/master/images/2-graph.JPG)
-### There is seven different kinds of colors in the graph each one is a community. Five connected groups and two single groups
+### There are seven different kinds of colors in the graph each one is a community. Five connected groups and two single groups
 
 ### Lets take a look over the community sizes
 ### 1.b.ii
@@ -133,7 +133,7 @@ plot(g, vertex.size=10, vertex.color=membership(alg.walktrap), asp=FALSE)
 ```
 ![str result Image](https://github.com/matan-yes/ex3/blob/master/images/3-graph.JPG)
 
-### There is seven different kinds of colors in the graph each one is a community. Four connected groups, one with double groups and one single group
+### There are seven different kinds of colors in the graph each one is a community. Four connected groups, one with double groups and one single group
 ## Lets take a look over the community sizes
 ## 1.b.ii
 ```{r}
