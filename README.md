@@ -24,7 +24,7 @@ Import IGraph Library
 library(igraph)
 ```
 
-## Read the data- nodes and edges into dataframe
+## Read the data - nodes and edges into dataframe
 ```{r}
 ga.data <- read.csv('ga_edgelist.csv', header=TRUE, stringsAsFactors=FALSE)
 ga.vrtx <- read.csv('ga_actors.csv', header=TRUE, stringsAsFactors=FALSE)
@@ -100,9 +100,8 @@ calc.eigenvector$vector[max.eigenvector]
     ##     1
     
 ## 1.b  Algorithms
-## 1) b.i
 ## First algorithm: The Grivan Newman Algorithm
-### Print the network up to the color code that match the communities
+### 1) b.i Print the network up to the color code that match the communities
 ```{r}
 alg.gri.new <- edge.betweenness.community(g)
 plot(g, vertex.size=10, vertex.color=membership(alg.gri.new), asp=FALSE)
@@ -126,9 +125,8 @@ modularity(alg.gri.new)
 ```
 [1] 0.5774221
 
-## 1.b.i
 ## Second algorithm: The Walktrap Algorithms
-### Print the network up to the color code that match the communities
+### 1) b.i Print the network up to the color code that match the communities
 ```{r}
 alg.walktrap <- walktrap.community(g)
 plot(g, vertex.size=10, vertex.color=membership(alg.walktrap), asp=FALSE)
