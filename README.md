@@ -126,16 +126,17 @@ modularity(alg.gri.new)
     [1] 0.5774221
 
 ## Second algorithm: The Walktrap Algorithms
-### 1) b.i Print the network up to the color code that match the communities
+### 1.b.i) Print the network up to the color code that match the communities
 ```{r}
 alg.walktrap <- walktrap.community(g)
 plot(g, vertex.size=10, vertex.color=membership(alg.walktrap), asp=FALSE)
 ```
 ![str result Image](https://github.com/matan-yes/ex3/blob/master/images/3-graph.JPG)
 
-### There are seven different kinds of colors in the graph each one is a community. Four connected groups, one with double groups and one single group
+### 1.b.ii) There are seven different kinds of colors in the graph each one is a community. Four connected groups, one with double groups and one single group
+
 ## Lets take a look over the community sizes
-## 1.b.ii
+ 
 ```{r}
 sizes(alg.walktrap)
 ```
@@ -144,7 +145,7 @@ sizes(alg.walktrap)
     ##  1  2  3  4  5  6  7 
     ##  5 13  3  3  2  3  3
     
-## 1.b.iii - The modularity value
+### 1.b.iii - The modularity value
 ```{r}
 modularity(alg.walktrap)
 ```
