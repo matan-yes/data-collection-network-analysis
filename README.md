@@ -40,7 +40,7 @@ plot(g)
 ```
 ![str result Image](https://github.com/matan-yes/ex3/blob/master/images/1-graph.JPG)
 
-## 1) a.i Calculate Betweenness
+## 1.a.i) Calculate Betweenness
 ```{r}
 calc.betweenness = betweenness(g)
 calc.betweenness
@@ -60,7 +60,7 @@ calc.betweenness[max.betweenness]
     ##    sloan 
     ## 115.3667
 
-## 1) a.ii Calculate Closeness
+## 1.a.ii) Calculate Closeness
 ```{r}
 calc.closeness = closeness(g)
 calc.closeness
@@ -79,7 +79,7 @@ calc.closeness[max.closeness]
 ```
     ##      torres 
     ## 0.003194888
-## 1) a.iii Calculate Eigenvector
+## 1.a.iii) Calculate Eigenvector
 ```{r}
 calc.eigenvector = eigen_centrality(g)
 calc.eigenvector
@@ -101,16 +101,16 @@ calc.eigenvector$vector[max.eigenvector]
     
 ## 1.b  Algorithms
 ## First algorithm: The Grivan Newman Algorithm
-### 1) b.i Print the network up to the color code that match the communities
+### 1.b.i) Print the network up to the color code that match the communities
 ```{r}
 alg.gri.new <- edge.betweenness.community(g)
 plot(g, vertex.size=10, vertex.color=membership(alg.gri.new), asp=FALSE)
 ```
 ![str result Image](https://github.com/matan-yes/ex3/blob/master/images/2-graph.JPG)
-### There are seven different kinds of colors in the graph each one is a community. Five connected groups and two single groups
+
+### 1.b.ii) There are seven different kinds of colors in the graph each one is a community. Five connected groups and two single groups
 
 ### Lets take a look over the community sizes
-### 1.b.ii
 ```{r}
 sizes(alg.gri.new)
 ```
