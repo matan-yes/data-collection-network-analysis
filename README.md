@@ -154,7 +154,7 @@ modularity(alg.walktrap)
 
 # Question 2 Use API to Fetch Data and Network Analysis
 
-## a. Data Collection
+## 2.a) Data Collection and Cleaning
 In this question we will fectch data from Facebook.
 We will use the package RFacebook.  
 
@@ -198,7 +198,7 @@ q2.fb_page <- getPage(page = facebook_page, token=fb_oauth, n = post_amount)
 
 ### Data Cleaning
 
-function for cleaning the data, the stages of cleaning are:  
+__Stages of cleaning:__
 1. Convert text to UTF-8  
 2. Change characters to lowercase  
 3. Remove URLS  
@@ -243,7 +243,7 @@ head(clean_posts, n = 3)
     [[3]] "still shopping you can still get our tasty latest greatest cookbook by christmas order here "
 
 ### Create corpus
-
+We use tm package, tm is a Text Mining package
 ```{r}
 library(tm)
 
@@ -254,7 +254,6 @@ q2.corpus <- tm_map(q2.corpus, removeWords, stopwords("english"))
 
 ### Create Term Document Matrix
 The term-document matrix will contain a binary weight, meaning '1' if term a is in document 1 or '0' otherwise.
-We use tm package, tm is a Text Mining package
 
 ```{r}
 q2.td_matrix <- TermDocumentMatrix(q2.corpus, control = list(weighting=weightBin))
@@ -266,13 +265,13 @@ head(q2.td_matrix)
 
 This table will represent our adjacency table of the graph.  
 
-### b. Graph Definition  
-__The graph will show connection between words:__  
+### 2.b) Graph Definition  
+__The graph will show connection between words in **same post**:__  
  Vertex = term from the post corpus  
  Edge  = represents co-occurence of the terms connected to it in the same post  
  Direction = the graph will be undirected  
 
-### c. Create the Graph:
+### 2.c) Create the Graph:
 ```{r}
 q2.graph <- graph.incidence(q2.td_matrix)
 q2.project_bi_graph <- bipartite.projection(q2.graph)
@@ -295,10 +294,10 @@ V(q2.graph)$size = degree(q2.graph)
 V(q2.graph)$label.cex<-  2.2 * V(q2.graph)$size / max(V(q2.graph)$size) + .2
 plot(q2.graph, margin = -0.2)
 ```
-![str result Image](https://github.com/matan-yes/ex3/blob/master/images/4-graph.JPG)
+![str result Image](https://github.com/matan-yes/ex3/blob/master/images/4-graph.JPG)  
 We tried some types of graphs and decided that the circle is the most readable.
 
-### d. From Question 1
+### 2.d) From Question 1
 #### Calculate Concentration
 **Betweenness**
 
@@ -362,7 +361,7 @@ sizes(q2.gn)
      1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19  
      2 26 35 16 19 24  5  4 20  1  1  1  8  4  4  2  1  6  4
      
-According to Girvan-Newman algorithm, there are 19 communities, the largest has 26 vertexes.
+According to Girvan-Newman algorithm, there are 19 communities, the largest has 35 vertexes.
 
 modularity value (returns max value):
 
