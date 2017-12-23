@@ -165,7 +165,7 @@ We used the following tutorial to learn how to create the authentication:
 2. In R we will download and require all the needed packages.  
 3. Create auth file (following the tutorial mentioned above).  
 4. We will fetch posts from Tasty facebook page  
-5. clean the posts tests  
+5. clean the posts texts  
 6. Build a corpus and Term Document Matrix
 
 The data we collect is posts from Tasty Facebook page  
