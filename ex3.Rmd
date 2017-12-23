@@ -5,6 +5,8 @@ date: "December 15, 2017"
 output: html_document
 ---
 
+# assingment 3 Data Collection and Community Analysis
+## Question 1: Grey's Anatomy Network of Romance
 
 Setting a working directory:
 
@@ -14,39 +16,40 @@ setwd(folder)
 
 #Or for all chuncks in this Rmarkdown:
 knitr::opts_knit$set(root.dir = folder )
-
-
 ```
 
+Check the working directory:
 ```{r}
 getwd()
 ```
+
+Import igraph library for working on graphs
 ```{r}
 library(igraph)
 ```
 
-
-
-# Grey's Anatomy Network of Romance
-## Read the data- nodes and edges into dataframe
-## set graph
+### Read the data- nodes and edges into dataframe
 ```{r}
 ga.data <- read.csv('ga_edgelist.csv', header=TRUE, stringsAsFactors=FALSE)
 ga.vrtx <- read.csv('ga_actors.csv', header=TRUE, stringsAsFactors=FALSE)
-g <- graph.data.frame(ga.data, vertices=ga.vrtx, directed=FALSE)
-
 ```
-##plot graph
+### set graph
+```{r}
+g <- graph.data.frame(ga.data, vertices=ga.vrtx, directed=FALSE)
+```
+
+### plot graph
 ```{r}
 plot(g)
 ```
 ![str result Image](https://github.com/matan-yes/ex3/blob/master/images/1-graph.JPG)
+
 #1 a.i Calculate Betweenness
 ```{r}
 calc.betweenness = betweenness(g)
 calc.betweenness
 ```
-##Plot the maximal betweeness
+### Calculate the maximal betweeness
 ```{r}
 max.betweenness <- as.numeric(which(max(calc.betweenness) == calc.betweenness))
 calc.betweenness[max.betweenness]
@@ -56,7 +59,7 @@ calc.betweenness[max.betweenness]
 calc.closeness = closeness(g)
 calc.closeness
 ```
-##Plot the maximal Closeness
+### Calculate the maximal Closeness
 ```{r}
 max.closeness <- as.numeric(which(max(calc.closeness) == calc.closeness))
 calc.closeness[max.closeness]
@@ -66,49 +69,275 @@ calc.closeness[max.closeness]
 calc.eigenvector = eigen_centrality(g)
 calc.eigenvector
 ```
-##Plot the maximal Eigenvector
+### Calculate the maximal Eigenvector
 ```{r}
 
 max.eigenvector <- as.numeric(which(max(calc.eigenvector$vector) == calc.eigenvector$vector))
 calc.eigenvector$vector[max.eigenvector]
 ```
-#1.b  Algorithms
-##1.b.i
-##First algorithm: The Grivan Newman alg
-###Print the network up to the color code that match the communities
+## 1.b  Algorithms
+
+## 1.b.i
+## First algorithm: The Grivan Newman alg
+### Print the network up to the color code that match the communities
 ```{r}
 alg.gri.new <- edge.betweenness.community(g)
 plot(g, vertex.size=10, vertex.color=membership(alg.gri.new), asp=FALSE)
 ```
 ![str result Image](https://github.com/matan-yes/ex3/blob/master/images/2-graph.JPG)
-### There is seven different kinds of colors in the graph each one is a community. Five connected groups and two single groups
-## Lets take a look over the community sizes
-##1.b.ii
+
+### There are seven different kinds of colors in the graph each one is a community. Five connected groups and two single groups
+### 1.b.ii Lets take a look over the community sizes
 ```{r}
 sizes(alg.gri.new)
 ```
-##1.b.iii - The modularity value
+### 1.b.iii - The modularity value
 ```{r}
 modularity(alg.gri.new)
 ```
 
-##1.b.i
-##First algorithm: The Walktrap alg
-###Print the network up to the color code that match the communities
+###1.b.i
+## First algorithm: The Walktrap alg
+### Print the network up to the color code that match the communities
 ```{r}
 alg.walktrap <- walktrap.community(g)
 plot(g, vertex.size=10, vertex.color=membership(alg.walktrap), asp=FALSE)
 ```
 ![str result Image](https://github.com/matan-yes/ex3/blob/master/images/3-graph.JPG)
 
-### There is seven different kinds of colors in the graph each one is a community. Four connected groups, one with double groups and one single group
-## Lets take a look over the community sizes
-##1.b.ii
+### There are seven different kinds of colors in the graph each one is a community. Four connected groups, one with double groups and one single group
+## 1.b.ii Lets take a look over the community sizes
 ```{r}
 sizes(alg.walktrap)
 ```
-##1.b.iii - The modularity value
+### 1.b.iii - The modularity value
 ```{r}
 modularity(alg.walktrap)
 
+```
+
+# Question 2
+
+## a. Data Collection
+
+In this question we will fectch data from Facebook.
+We will use the package RFacebook.  
+We used the following tutorial to learn how to create the authentication: 
+[Analyzing-Facebook-with-R](http://thinktostart.com/analyzing-facebook-with-r/)
+
+**The steps of the process are:**  
+1. We will create Facebook Developer account.  
+2. In R we will download and require all the needed packages.  
+3. Create auth file (following the tutorial mentioned above).  
+4. We will fetch posts from Tasty facebook page  
+5. clean the posts tests  
+6. Build a corpus and Term Document Matrix
+
+The data we collect is posts from Tasty Facebook page  
+[Tasty Faceboook page](https://www.facebook.com/buzzfeedtasty/?fref=ts)  
+We will fetch 25 posts, without comments. It would be nice if we can discover what are the main ingredients in thier recipe.
+
+#### Let's start:  
+install packages:
+```{r}
+
+# install.packages("devtools")
+# install_github("pablobarbera/Rfacebook/Rfacebook")
+# install.packages("tm")
+# library(devtools)
+# install.packages ("igraph") // we have from quesiotn 1
+
+```
+
+Import RFacebook  
+
+Quotation from RFacebook github:  
+This package provides a series of functions that allow R users to access Facebook's API to get information about public pages, groups, and posts, as well as some of the authenticated user's private data.
+
+
+```{r}
+require (Rfacebook)
+```
+
+Load the auth file with the Facebook authentication details
+
+```{r}
+load("fb_oauth")
+```
+
+Fetch 25 posts from the page Tasty.
+We wont fetch comments of the posts, only the content of the posts.
+
+```{r}
+post_amount = 25
+subject = "buzzfeedtasty"
+q2.fb_page <- getPage(page = subject, token=fb_oauth, n = post_amount)
+```
+
+### Data Cleaning
+
+function for cleaning the data, the stages of cleaning are:  
+1. Convert text to UTF-8  
+2. Change characters to lowercase  
+3. Remove URLS  
+4. Delete all chars that are not english letter or numbers  
+5. Fix spacing  
+
+```{r}
+# helper function for removing urls from posts content
+removeURL <- function(x) gsub("http[^[:space:]]*", "", x)
+
+Clean_String <- function(string){
+    # convert to UTF-8
+    processed_text <- iconv(string, "", "UTF-8")
+    # Lowercase
+    processed_text <- tolower(processed_text)
+    # remove urls
+    processed_text <- removeURL(processed_text)
+    #' Remove everything that is not a number or letter
+    processed_text <- stringr::str_replace_all(processed_text,"[^a-zA-Z'0-9\\s]", "")
+    # Shrink down to just one white space
+    processed_text <- stringr::str_replace_all(processed_text,"[\\s]+", " ")
+    # Get rid of trailing "" if necessary
+    indexes <- which(processed_text == "")
+    if(length(indexes) > 0){
+      processed_text <- processed_text[-indexes]
+    }
+    return(processed_text)
+}
+
+clean_posts <- lapply(X=q2.fb_page$message,FUN=Clean_String)
+```
+
+Print the first 3 posts to see how the text looks after cleaning
+```{r}
+head(clean_posts, n = 3)
+```
+
+### Create corpus
+
+```{r}
+library(tm)
+
+q2.corpus <- Corpus(VectorSource(clean_posts))
+q2.corpus <- tm_map(q2.corpus, removeWords, stopwords("english"))
+
+```
+
+### Create Term Document Matrix
+The term-document matrix will contain a binary weight, meaning '1' if term a is in document 1 or '0' otherwise.
+```{r}
+q2.td_matrix <- TermDocumentMatrix(q2.corpus, control = list(weighting=weightBin))
+q2.td_matrix <- as.matrix(q2.td_matrix)
+head(q2.td_matrix)
+```
+
+This table will represt our adjacency table of the graph.
+
+### b. Graph Definition
+The graph will show connection between words.
+
+Vertex = term from the post corpus  
+Edge  = represents co-occurence of the terms connected to it in the same post  
+Direction = the graph will be undirected
+
+### c. Create the Graph:
+```{r}
+library(igraph)
+
+q2.graph <- graph.incidence(q2.td_matrix)
+q2.project_bi_graph <- bipartite.projection(q2.graph)
+q2.graph <- q2.project_bi_graph$proj1
+q2.graph <- simplify(q2.graph)
+summary(q2.graph)
+```
+
+**Discover Graph dimensions:**
+We have a 183 vertices and 1565 edges.
+We can see from "UNW"" that the graph is undirected (as we expected).
+
+### draw graph
+```{r}
+q2.graph$layout <- layout.circle(q2.graph)
+V(q2.graph)$label <- V(q2.graph)$name
+V(q2.graph)$size = degree(q2.graph)
+V(q2.graph)$label.cex<-  2.2 * V(q2.graph)$size / max(V(q2.graph)$size) + .2
+plot(q2.graph, margin = -0.2)
+```
+We tried some types of graphs and decided that the circle is the most readable.
+
+## d. From Question 1
+### Calculate Concentration
+**Betweenness**
+
+```{r}
+calc.betweenness = betweenness(q2.graph)
+max.betweenness <- as.numeric(which(max(calc.betweenness) == calc.betweenness))
+calc.betweenness[max.betweenness]
+```
+
+**closeness**
+
+```{r}
+q2.closeness = closeness(q2.graph)
+q2.max_closeness <- as.numeric(which(max(q2.closeness) == q2.closeness))
+q2.closeness[q2.max_closeness]
+```
+
+**Eigenvector**
+
+```{r}
+q2.eigenvector = eigen_centrality(q2.graph)
+q2.max_eigenvector <- as.numeric(which(max(q2.eigenvector$vector) == q2.eigenvector$vector))
+q2.eigenvector$vector[q2.max_eigenvector]
+```
+
+**conclusion**
+The word "tasty"" is the word with the maximal Betweenness and closeness.
+The word "now"" is the word with the maximal Eigenvector.
+
+**community detection:**  
+With the shape of circle it will be more difficlt to see the diffrent communities.  
+We will change the shape to fruchterman.reingold
+
+```{r}
+q2.graph$layout <-layout.fruchterman.reingold(q2.graph)
+```
+
+**First algorithm - Girvan-Newman:**
+
+```{r}
+q2.gn <-  edge.betweenness.community(q2.graph)
+plot(q2.graph, vertex.size=10, vertex.color=membership(q2.gn), asp=FALSE)
+```
+
+Check the size of the community and number of members:
+first row is the number of the community, second row is the number of members in the community  
+```{r}
+sizes(q2.gn)
+```
+According to Girvan-Newman algorithm, there are 19 communities, the largest has 26 vertexes.
+
+
+modularity value (returns max value):
+```{r}
+modularity(q2.gn)
+```
+
+**Second algorithm - Walktrap:**
+
+```{r}
+q2.walktrap <- walktrap.community(q2.graph)
+plot(q2.graph, vertex.size=10, vertex.color=membership(q2.walktrap), asp=FALSE)
+```
+
+Check the size of the community and number of members:
+```{r}
+sizes(q2.walktrap)
+```
+According to Walktrap algorithm, there are 15 communities, the largest has 41 vertexes.
+
+modularity value (returns max value):
+```{r}
+modularity(q2.walktrap)
 ```
