@@ -157,8 +157,6 @@ modularity(alg.walktrap)
 ## a. Data Collection
 In this question we will fectch data from Facebook.
 We will use the package RFacebook.  
-We used the following tutorial to learn how to create the authentication: 
-[Analyzing-Facebook-with-R](http://thinktostart.com/analyzing-facebook-with-r/)
 
 **The steps of the process are:**  
 1. We will create Facebook Developer account.  
@@ -169,7 +167,7 @@ We used the following tutorial to learn how to create the authentication:
 6. Build a corpus and Term Document Matrix
 
 The data we collect is posts from [Tasty](https://www.facebook.com/buzzfeedtasty/?fref=ts) Facebook page  
-We will fetch 25 posts, without comments. It would be nice if we can discover what are the main ingredients in thier recipe.
+We will fetch 25 posts, without comments. It would be nice if we can discover what are the main ingredients in thier recipes.
 
 #### Let's start:  
 Import RFacebook  
@@ -182,19 +180,20 @@ This package provides a series of functions that allow R users to access Faceboo
 require (Rfacebook)
 ```
 
-Load the auth file with the Facebook authentication details
-
+Load the auth file with the Facebook authentication details.  
+We used the following tutorial to learn how to create the authentication:  
+[Analyzing-Facebook-with-R](http://thinktostart.com/analyzing-facebook-with-r/)
 ```{r}
 load("fb_oauth")
 ```
 
 Fetch 25 posts from the page Tasty.
-We wont fetch comments of the posts, only the content of the posts.
+We won't fetch comments of the posts, only the content of the posts.
 
 ```{r}
 post_amount = 25
-subject = "buzzfeedtasty"
-q2.fb_page <- getPage(page = subject, token=fb_oauth, n = post_amount)
+facebook_page = "buzzfeedtasty"
+q2.fb_page <- getPage(page = facebook_page, token=fb_oauth, n = post_amount)
 ```
 
 ### Data Cleaning
