@@ -164,12 +164,12 @@ We used the following tutorial to learn how to create the authentication:
 1. We will create Facebook Developer account.  
 2. In R we will download and require all the needed packages.  
 3. Create auth file (following the tutorial mentioned above).  
-4. We will fetch posts from Tasty facebook page  
+4. We will fetch posts from a chosen facebook page
 5. clean the posts texts  
 6. Build a corpus and Term Document Matrix
 
-The data we collect is posts from Tasty Facebook page  
-[Tasty Faceboook page](https://www.facebook.com/buzzfeedtasty/?fref=ts)  
+The data we collect is posts from [Tasty](https://www.facebook.com/buzzfeedtasty/?fref=ts)  
+ Facebook page  
 We will fetch 25 posts, without comments. It would be nice if we can discover what are the main ingredients in thier recipe.
 
 #### Let's start:  
