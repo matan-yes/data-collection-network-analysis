@@ -168,8 +168,7 @@ We used the following tutorial to learn how to create the authentication:
 5. clean the posts texts  
 6. Build a corpus and Term Document Matrix
 
-The data we collect is posts from [Tasty](https://www.facebook.com/buzzfeedtasty/?fref=ts)  
- Facebook page  
+The data we collect is posts from [Tasty](https://www.facebook.com/buzzfeedtasty/?fref=ts) Facebook page  
 We will fetch 25 posts, without comments. It would be nice if we can discover what are the main ingredients in thier recipe.
 
 #### Let's start:  
