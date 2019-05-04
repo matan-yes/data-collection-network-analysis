@@ -1,6 +1,6 @@
-# ex3
+# Data Collection & Network Analysis
 ---
-title: "EX3"
+title: "Data Collection & Network Analysis"
 author: "Matan Yeshurun and Alon Galperin"
 date: "December 15, 2017"
 output: html_document
